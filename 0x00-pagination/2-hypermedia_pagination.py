@@ -65,4 +65,5 @@ class Server:
         return data[start:end]
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
-        pass
+        page_data = self.get_page(page, page_size)
+        
