@@ -65,6 +65,24 @@ class Server:
         return data[start:end]
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
+        '''
+        Get information about a specific page within a paginated dataset.
+
+        Args:
+            page (int, optional): The page number to retrieve. Defaults to 1.
+            page_size (int, optional): The number of items per page.
+                                        Defaults to 10.
+
+        Returns:
+            Dict: A dictionary containing information about the specified page,
+            including:
+                - 'page_size': The number of items on the current page.
+                - 'page': The current page number.
+                - 'data': The data for the current page.
+                - 'next_page': The next page num or None if it's the last page
+                - 'prev_page': The previous page number or None if first page.
+                - 'total_pages': The total number of pages in the dataset.
+        '''
         page_data = self.get_page(page, page_size)
         start, end = index_range(page, page_size)
         total_pages = math.ceil(len(self.__dataset) / page_size)
