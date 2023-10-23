@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''pagination module'''
-from typing import Tuple
+from typing import Tuple,Dict
 import csv
 import math
 from typing import List
