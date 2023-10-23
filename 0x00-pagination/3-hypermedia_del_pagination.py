@@ -40,6 +40,22 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        """
+        Get a page of indexed data from a dataset.
+
+        Parameters:
+            index (int, optional): The index from which to start fetching data
+            If not specified, it starts from the beginning.
+            page_size (int, optional): The number of items to fetch in one page
+
+        Returns:
+            Dict: A dictionary containing the page info including the index
+            next_index, page_size, and data.
+
+        Raises:
+            AssertionError: If the provided index is out of bounds.
+
+        """
         data = self.indexed_dataset()
         max_index = max(data.keys())
         assert index is not None and index >= 0 and index <= max(data.keys())
