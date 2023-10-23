@@ -22,9 +22,6 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
     return (start, end)
 
 
-def get_page(page = 1, page_size = 10):
-    pass
-
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -45,4 +42,4 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            pass
+        pass
