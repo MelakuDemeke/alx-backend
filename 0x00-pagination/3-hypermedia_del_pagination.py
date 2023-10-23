@@ -57,7 +57,6 @@ class Server:
 
         """
         data = self.indexed_dataset()
-        max_index = max(data.keys())
         assert index is not None and index >= 0 and index <= max(data.keys())
         page_data = []
         data_count = 0
