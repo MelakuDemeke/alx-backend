@@ -15,5 +15,5 @@ def index_range(page: int, page_size: int) -> Tuple[int, int]:
         Tuple[int, int]: A tuple containing the start and end indices
     '''
     start = (page - 1) * page_size
-    end = page + page_size
+    end = start + page_size
     return (start, end)
