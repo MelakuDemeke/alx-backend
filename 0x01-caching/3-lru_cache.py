@@ -23,6 +23,7 @@ class LRUCache(BaseCaching):
         self.cache_data[key] = item
 
     def get(self, key):
-        """Retrieve an item from the cache by key, updating its position as the most recently used.
+        """Retrieve an item from the cache by key,
+        updating its position as themost recently used.
         """
         pass 
