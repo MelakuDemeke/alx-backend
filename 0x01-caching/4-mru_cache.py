@@ -30,4 +30,9 @@ class MRUCache(BaseCaching):
             self.cache_data[key] = item
         
     def get(self, key):
-        pass
+        """
+        Retrieves an item from the MRU cache by its key.
+
+        :param key: The key to retrieve an item for.
+        :return: The item if found, or None if not found.
+        """
