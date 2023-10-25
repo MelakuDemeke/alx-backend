@@ -35,3 +35,11 @@ class LFUCache(BaseCaching):
                 current_freq = freq
                 self.keys_freq.pop(i)
                 break
+
+        insert_index = 0
+        for i, (k, freq) in enumerate(self.keys_freq):
+            if freq > current_freq:
+                insert_index = i + 1
+            else:
+                break
+        self.keys_freq.insert(insert_index, (key, current_freq + 1))
