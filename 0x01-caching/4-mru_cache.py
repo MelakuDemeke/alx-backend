@@ -3,4 +3,7 @@
 from base_caching import BaseCaching
 
 class MRUCache(BaseCaching):
-    pass
+    def __init__(self):
+        """Initializes the cache with an empty OrderedDict."""
+        super().__init__()
+        self.cache_data = OrderedDict()
