@@ -28,3 +28,6 @@ class MRUCache(BaseCaching):
                 mru_key, _ = self.cache_data.popitem(last=False)
                 print("DISCARD:", mru_key)
             self.cache_data[key] = item
+        
+    def get(self, key):
+        pass
