@@ -11,6 +11,7 @@ class LIFOCache(BaseCaching):
         """Initialize the cache using an ordered dictionary."""
         super().__init__()
         self.cache_data = OrderedDict()
+
     def put(self, key, item):
         """Add an item to the cache, implementing LIFO if the limit is reached
         """
@@ -20,3 +21,8 @@ class LIFOCache(BaseCaching):
             last_key, _ = self.cache_data.popitem(last=True)
             print("DISCARD:", last_key)
         self.cache_data[key] = item
+
+    def get(self, key):
+        """Retrieve an item from the cache by key.
+        """
+        return self.cache_data.get(key, None)
