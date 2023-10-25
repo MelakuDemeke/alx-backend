@@ -10,5 +10,8 @@ class FIFOCache(BaseCaching):
         """Initialize the cache using an ordered dictionary"""
         super().__init__()
         self.cache_data = OrderedDict()
+
     def put(self, key, item):
+        """Add an item to the cache, implementing FIFO if the limit is reached
+        """
         pass
