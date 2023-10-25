@@ -55,3 +55,15 @@ class LFUCache(BaseCaching):
         """
         if key is None or item is None:
             return
+
+        if key not in self.cache_data:
+            if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
+                lfu_key, _ = self.keys_freq.pop()
+                self.cache_data.pop(lfu_key)
+                print("DISCARD:", lfu_key)
+
+            self.cache_data[key] = item
+            self.keys_freq.insert(0, (key, 0))
+        else:
+            self.cache_data[key] = item
+            self._reorder_items(key)
