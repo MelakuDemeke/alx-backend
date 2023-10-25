@@ -67,3 +67,16 @@ class LFUCache(BaseCaching):
         else:
             self.cache_data[key] = item
             self._reorder_items(key)
+
+    def get(self, key):
+        """Retrieve an item from the cache by its key.
+
+        When getting an item, the cache is updated to reflect its usage.
+
+        Args:
+            key (str): The key of the item to retrieve.
+
+        Returns:
+            The cached item or None if not found.
+        """
+        pass
