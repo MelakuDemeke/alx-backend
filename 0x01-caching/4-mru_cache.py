@@ -19,4 +19,5 @@ class MRUCache(BaseCaching):
         :param key: The key to associate with the item.
         :param item: The item to be stored.
         """
-        pass
+        if key is None or item is None:
+            return
