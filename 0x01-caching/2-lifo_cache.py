@@ -12,4 +12,6 @@ class LIFOCache(BaseCaching):
         super().__init__()
         self.cache_data = OrderedDict()
     def put(self, key, item):
+        """Add an item to the cache, implementing LIFO if the limit is reached
+        """
         pass
