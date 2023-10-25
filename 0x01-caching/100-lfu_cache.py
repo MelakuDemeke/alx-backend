@@ -5,4 +5,15 @@ from base_caching import BaseCaching
 
 
 class LFUCache(BaseCaching):
+    """Least Frequently Used (LFU) Cache implementation.
+
+    This class represents a caching mechanism that stores and retrieves items
+    based on the LFU
+    (Least Frequently Used) algorithm.
+
+    Attributes:
+        cache_data (OrderedDict): A dictionary-like data structure to store
+                                    cached items.
+        keys_freq (list): A list to track key frequencies in the cache.
+    """
     pass
