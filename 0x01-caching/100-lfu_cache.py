@@ -79,4 +79,6 @@ class LFUCache(BaseCaching):
         Returns:
             The cached item or None if not found.
         """
-        pass
+        if key is not None and key in self.cache_data:
+            self._reorder_items(key)
+        return self.cache_data.get(key, None)
