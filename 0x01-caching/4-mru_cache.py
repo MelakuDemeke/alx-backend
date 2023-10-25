@@ -36,3 +36,7 @@ class MRUCache(BaseCaching):
         :param key: The key to retrieve an item for.
         :return: The item if found, or None if not found.
         """
+        if key is not None and key in self.cache_data:
+            self.cache_data.move_to_end(key, last=False)
+            return self.cache_data[key]
+        return None
