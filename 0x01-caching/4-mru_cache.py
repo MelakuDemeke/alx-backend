@@ -13,4 +13,10 @@ class MRUCache(BaseCaching):
         self.cache_data = OrderedDict()
 
     def put(self, key, item):
+        """
+        Adds an item to the MRU cache.
+
+        :param key: The key to associate with the item.
+        :param item: The item to be stored.
+        """
         pass
