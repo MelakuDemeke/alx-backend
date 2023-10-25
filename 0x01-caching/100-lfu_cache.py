@@ -24,27 +24,34 @@ class LFUCache(BaseCaching):
         self.cache_data = OrderedDict()
         self.keys_freq = []
 
-    def _reorder_items(self, key):
+    def reorder_items_based_on_mru(self, most_recently_used_key):
         """Reorder items in the cache based on the given key's usage frequency.
 
         Args:
             key (str): The key to reorder based on its usage frequency.
         """
-        current_freq = 0
-        for i, (k, freq) in enumerate(self.keys_freq):
-            if k == key:
-                current_freq = freq
-                self.keys_freq.pop(i)
-                break
+        max_positions = []
+        mru_frequency = 0
+        mru_position = 0
+        insertion_position = 0
 
-        insert_index = 0
-        for i, (k, freq) in enumerate(self.keys_freq):
-            if freq > current_freq:
-                insert_index = i + 1
-            else:
+        for i, (key, frequency) in enumerate(self.keys_freq):
+            if key == most_recently_used_key:
+                mru_frequency = frequency + 1
+                mru_position = i
                 break
-        self.keys_freq.insert(insert_index, (key, current_freq + 1))
+            elif not max_positions or frequency < self.keys_freq[max_positions[-1]][1]:
+                max_positions.append(i)
 
+        max_positions.reverse()
+
+        for pos in max_positions:
+            if self.keys_freq[pos][1] > mru_frequency:
+                break
+            insertion_position = pos
+
+        self.keys_freq.pop(mru_position)
+        self.keys_freq.insert(insertion_position, [most_recently_used_key, mru_frequency])
     def put(self, key, item):
         """Add an item to the cache.
 
@@ -67,7 +74,7 @@ class LFUCache(BaseCaching):
             self.keys_freq.insert(0, (key, 0))
         else:
             self.cache_data[key] = item
-            self._reorder_items(key)
+            self.reorder_items_based_on_mru(key)
 
     def get(self, key):
         """Retrieve an item from the cache by its key.
@@ -81,5 +88,5 @@ class LFUCache(BaseCaching):
             The cached item or None if not found.
         """
         if key is not None and key in self.cache_data:
-            self._reorder_items(key)
+            self.reorder_items_based_on_mru(key)
         return self.cache_data.get(key, None)
