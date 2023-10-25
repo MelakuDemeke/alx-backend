@@ -43,3 +43,14 @@ class LFUCache(BaseCaching):
             else:
                 break
         self.keys_freq.insert(insert_index, (key, current_freq + 1))
+
+    def put(self, key, item):
+        """Add an item to the cache.
+
+        If the cache is full, the least frequently used item is removed.
+
+        Args:
+            key (str): The key to store the item under.
+            item: The item to cache.
+        """
+        pass
