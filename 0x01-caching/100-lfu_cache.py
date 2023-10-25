@@ -29,4 +29,9 @@ class LFUCache(BaseCaching):
         Args:
             key (str): The key to reorder based on its usage frequency.
         """
-        pass
+        current_freq = 0
+        for i, (k, freq) in enumerate(self.keys_freq):
+            if k == key:
+                current_freq = freq
+                self.keys_freq.pop(i)
+                break
