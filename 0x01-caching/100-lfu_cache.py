@@ -2,7 +2,7 @@
 """Least Frequently Used (LFU) caching module.
 """
 from base_caching import BaseCaching
-
+from collections import OrderedDict
 
 class LFUCache(BaseCaching):
     """Least Frequently Used (LFU) Cache implementation.
