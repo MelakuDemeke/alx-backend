@@ -53,4 +53,5 @@ class LFUCache(BaseCaching):
             key (str): The key to store the item under.
             item: The item to cache.
         """
-        pass
+        if key is None or item is None:
+            return
