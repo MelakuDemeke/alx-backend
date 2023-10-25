@@ -15,4 +15,5 @@ class LRUCache(BaseCaching):
     def put(self, key, item):
         """Add an item to the cache, implementing LRU if the limit is reached.
         """
-        pass
+        if key is None or item is None:
+            return
