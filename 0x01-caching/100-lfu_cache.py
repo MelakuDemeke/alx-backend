@@ -24,7 +24,7 @@ class LFUCache(BaseCaching):
         self.cache_data = OrderedDict()
         self.keys_freq = []
 
-    def reorder_items_based_on_mru(self, most_recently_used_key):
+    def reorder_items_based_on_mru(self, mru_key):
         """Reorder items in the cache based on the given key's usage frequency.
 
         Args:
