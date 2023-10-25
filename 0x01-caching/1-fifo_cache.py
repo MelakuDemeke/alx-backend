@@ -14,4 +14,5 @@ class FIFOCache(BaseCaching):
     def put(self, key, item):
         """Add an item to the cache, implementing FIFO if the limit is reached
         """
-        pass
+        if key is None or item is None:
+            return
