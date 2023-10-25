@@ -22,15 +22,12 @@ class MRUCache(BaseCaching):
         :param key: The key to associate with the item.
         :param item: The item to be stored.
         """
-        if key is None or item is None:
-            return
-        if key in self.cache_data:
-            self.cache_data.move_to_end(key, last=False)
-        else:
+        if key is not None and item is not None:
             if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
                 mru_key, _ = self.cache_data.popitem(last=False)
                 print("DISCARD:", mru_key)
             self.cache_data[key] = item
+            self.cache_data.move_to_end(key, last=False)
 
     def get(self, key):
         """
