@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-
+"""Most Recently Used (MRU) caching module.
+"""
 from base_caching import BaseCaching
 from collections import OrderedDict
 
