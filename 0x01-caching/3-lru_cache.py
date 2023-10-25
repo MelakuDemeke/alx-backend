@@ -21,3 +21,8 @@ class LRUCache(BaseCaching):
             lru_key, _ = self.cache_data.popitem(last=False)
             print("DISCARD:", lru_key)
         self.cache_data[key] = item
+
+    def get(self, key):
+        """Retrieve an item from the cache by key, updating its position as the most recently used.
+        """
+        pass 
