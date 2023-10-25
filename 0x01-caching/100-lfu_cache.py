@@ -16,4 +16,8 @@ class LFUCache(BaseCaching):
                                     cached items.
         keys_freq (list): A list to track key frequencies in the cache.
     """
-    pass
+    def __init__(self):
+        """Initialize the LFU cache."""
+        super().__init__()
+        self.cache_data = OrderedDict()
+        self.keys_freq = []
