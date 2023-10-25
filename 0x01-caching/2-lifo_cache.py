@@ -11,3 +11,5 @@ class LIFOCache(BaseCaching):
         """Initialize the cache using an ordered dictionary."""
         super().__init__()
         self.cache_data = OrderedDict()
+    def put(self, key, item):
+        pass
