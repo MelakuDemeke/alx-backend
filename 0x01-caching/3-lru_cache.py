@@ -17,7 +17,7 @@ class LRUCache(BaseCaching):
         """Add an item to the cache, implementing LRU if the limit is reached.
         """
         if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
-            lru_key, _ = self.cache_data.popitem(last=True)
+            lru_key, _ = self.cache_data.popitem(True)
             print("DISCARD:", lru_key)
 
         self.cache_data[key] = item
