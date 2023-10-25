@@ -30,28 +30,27 @@ class LFUCache(BaseCaching):
         Args:
             key (str): The key to reorder based on its usage frequency.
         """
-        max_positions = []
-        mru_frequency = 0
-        mru_position = 0
-        insertion_position = 0
-
-        for i, (key, frequency) in enumerate(self.keys_freq):
-            if key == most_recently_used_key:
-                mru_frequency = frequency + 1
-                mru_position = i
+        max_pos = []
+        mru_fre = 0
+        mru_pos = 0
+        ins_pos = 0
+        for i, key_freq in enumerate(self.keys_freq):
+            if key_freq[0] == mru_key:
+                mru_fre = key_freq[1] + 1
+                mru_pos = i
                 break
-            elif not max_positions or frequency < self.keys_freq[max_positions[-1]][1]:
-                max_positions.append(i)
-
-        max_positions.reverse()
-
-        for pos in max_positions:
-            if self.keys_freq[pos][1] > mru_frequency:
+            elif len(max_pos) == 0:
+                max_pos.append(i)
+            elif key_freq[1] < self.keys_freq[max_pos[-1]][1]:
+                max_pos.append(i)
+        max_pos.reverse()
+        for pos in max_pos:
+            if self.keys_freq[pos][1] > mru_fre:
                 break
-            insertion_position = pos
+            ins_pos = pos
+        self.keys_freq.pop(mru_pos)
+        self.keys_freq.insert(ins_pos, [mru_key, mru_fre])
 
-        self.keys_freq.pop(mru_position)
-        self.keys_freq.insert(insertion_position, [most_recently_used_key, mru_frequency])
     def put(self, key, item):
         """Add an item to the cache.
 
