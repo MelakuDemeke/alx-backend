@@ -22,7 +22,7 @@ def get_locale():
 @app.route('/')
 def index():
     """index page of the app"""
-    return render_template('2-index.html')
+    return render_template('3-index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
