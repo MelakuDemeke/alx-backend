@@ -56,4 +56,7 @@ for (const job of jobs) {
 	.on('enqueue', () => {
 		console.log('Notification job created:', job.id);
 	})
-	}
+	.on('complete', () => {
+		console.log('Notification job', job.id, 'completed');
+	})
+}
