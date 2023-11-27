@@ -1,6 +1,7 @@
 import { createClient, print } from 'redis';
 
 const client = createClient();
+const EXIT_MSG = 'KILL_SERVER';
 
 client.on('error', (err) => {
   console.log('Redis client not connected to the server:', err.toString());
