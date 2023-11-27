@@ -54,16 +54,17 @@ for (const job of jobs) {
 
 	notificationJob
 	.on('enqueue', () => {
-		console.log('Notification job created:', job.id);
+		console.log('Notification job created:', notificationJob.id);
 	})
 	.on('complete', () => {
-		console.log('Notification job', job.id, 'completed');
+		console.log('Notification job', notificationJob.id, 'completed');
 	})
 	.on('failed', (err) => {
-		console.log('Notification job', job.id, 'failed:', err.message || err.toString());
+		console.log('Notification job', notificationJob.id, 'failed:',
+																		err.message || err.toString());
 	})
 	.on('progress', (progress, _data) => {
-		console.log('Notification job', job.id, `${progress}% complete`);
+		console.log('Notification job', notificationJob.id, `${progress}% complete`);
 	});
 	notificationJob.save();
 }
