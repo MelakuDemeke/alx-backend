@@ -23,5 +23,7 @@ const sendNotification = (phoneNumber, message, job, done) => {
         `with message: ${message}`,
       );
     }
+    --pendingNotifications || done();
+    pendingNotifications || clearInterval(sendInterval);
   }, 1000);
 }
