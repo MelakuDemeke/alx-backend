@@ -1,3 +1,5 @@
+import { createQueue } from 'kue';
+
 const jobs = [
 	{
 		phoneNumber: '4153518780',
