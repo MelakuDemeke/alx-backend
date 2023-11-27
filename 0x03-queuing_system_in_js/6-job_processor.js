@@ -9,3 +9,8 @@ const sendNotification = (phoneNumber, message) => {
     message,
   );
 };
+
+queue.process('push_notification_code', (job, done) => {
+  sendNotification(job.data.phoneNumber, job.data.message);
+  done();
+});
