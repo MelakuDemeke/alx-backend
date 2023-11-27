@@ -9,3 +9,10 @@ client.on('error', (err) => {
 client.on('connect', () => {
   console.log('Redis client connected to the server');
 });
+
+const publishMessage = (message, time) => {
+  setTimeout(() => {
+    console.log(`About to send ${message}`);
+    client.publish('holberton school channel', message);
+  }, time);
+};
