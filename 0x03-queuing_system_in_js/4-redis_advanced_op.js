@@ -23,6 +23,10 @@ function main() {
     Cali: 40,
     Paris: 2,
   };
+  for (const [field, value] of Object.entries(city)) {
+    updateHash('HolbertonSchools', field, value);
+  }
+  printHash('HolbertonSchools');
 }
 
 client.on('connect', () => {
