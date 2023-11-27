@@ -46,3 +46,5 @@ const jobs = [
 		message: 'This is the code 4321 to verify your account'
 	}
 ];
+
+const queue = createQueue({ name: 'push_notification_code_2' });
