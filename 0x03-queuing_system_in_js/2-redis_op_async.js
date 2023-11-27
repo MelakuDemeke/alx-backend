@@ -15,10 +15,8 @@ const setNewSchool = (schoolName, value) => {
   client.SET(schoolName, value, print);
 };
 
-const displaySchoolValue = (schoolName) => {
-  client.GET(schoolName, (_err, reply) => {
-    console.log(reply);
-  });
+const displaySchoolValue = async (schoolName) => {
+  console.log(await promisify(client.GET).bind(client)(schoolName));
 };
 
 displaySchoolValue('Holberton');
