@@ -65,4 +65,5 @@ for (const job of jobs) {
 	.on('progress', (progress, _data) => {
 		console.log('Notification job', job.id, `${progress}% complete`);
 	});
+	notificationJob.save();
 }
