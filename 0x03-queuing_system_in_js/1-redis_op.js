@@ -11,5 +11,11 @@ client.on('connect', () => {
 });
 
 function setNewSchool(schoolName, vlaue) {
-  client.set(schoolName, value);
+  client.SET(schoolName, value);
+}
+
+function displaySchoolValue(schoolName) {
+  client.GET(schoolName, (err, res) => {
+    console.log(res);
+  });
 }
