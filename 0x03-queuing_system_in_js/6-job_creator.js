@@ -17,3 +17,5 @@ job
   .on('failed attempt', () => {
     console.log('Notification job failed');
   });
+
+  job.save();
