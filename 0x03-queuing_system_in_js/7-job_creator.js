@@ -48,3 +48,7 @@ const jobs = [
 ];
 
 const queue = createQueue({ name: 'push_notification_code_2' });
+
+for (const job of jobs) {
+  const job = queue.create('push_notification_code_2', job);
+	}
