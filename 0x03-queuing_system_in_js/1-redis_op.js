@@ -9,3 +9,7 @@ client.on('error', (err) => {
 client.on('connect', () => {
   console.log('Redis client connected to the server');
 });
+
+function setNewSchool(schoolName, vlaue) {
+  client.set(schoolName, value);
+}
