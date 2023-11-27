@@ -19,6 +19,8 @@ const displaySchoolValue = async (schoolName) => {
   console.log(await promisify(client.GET).bind(client)(schoolName));
 };
 
-displaySchoolValue('Holberton');
-setNewSchool('HolbertonSanFrancisco', '100');
-displaySchoolValue('HolbertonSanFrancisco');
+async function main() {
+  await displaySchoolValue('Holberton');
+  setNewSchool('HolbertonSanFrancisco', '100');
+  await displaySchoolValue('HolbertonSanFrancisco');
+}
