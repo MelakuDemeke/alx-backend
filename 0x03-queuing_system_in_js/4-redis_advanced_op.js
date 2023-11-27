@@ -14,3 +14,11 @@ const printHash = (hashName) => {
   client.HGETALL(hashName, (_err, reply) => console.log(reply));
 };
 
+function main() {
+
+}
+
+client.on('connect', () => {
+  console.log('Redis client connected to the server');
+  main();
+});
