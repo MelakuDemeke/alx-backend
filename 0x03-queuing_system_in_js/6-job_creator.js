@@ -14,3 +14,6 @@ job
   .on('complete', () => {
     console.log('Notification job completed');
   })
+  .on('failed attempt', () => {
+    console.log('Notification job failed');
+  });
