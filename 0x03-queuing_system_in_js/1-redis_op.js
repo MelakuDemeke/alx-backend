@@ -19,3 +19,7 @@ function displaySchoolValue(schoolName) {
     console.log(res);
   });
 }
+
+displaySchoolValue('Holberton');
+setNewSchool('HolbertonSanFrancisco', '100');
+displaySchoolValue('HolbertonSanFrancisco');
