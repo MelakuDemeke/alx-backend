@@ -51,4 +51,9 @@ const queue = createQueue({ name: 'push_notification_code_2' });
 
 for (const job of jobs) {
   const notificationJob  = queue.create('push_notification_code_2', job);
+
+	notificationJob
+	.on('enqueue', () => {
+		console.log('Notification job created:', job.id);
+	})
 	}
