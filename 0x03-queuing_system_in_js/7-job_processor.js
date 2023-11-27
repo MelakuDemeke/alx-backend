@@ -11,5 +11,11 @@ const sendNotification = (phoneNumber, message, job, done) => {
       job.progress(totalNotifications - pendingNotifications, totalNotifications);
     }
 
+    if (BLACKLISTED_NUMBERS.includes(phoneNumber)) {
+      done(new Error(`Phone number ${phoneNumber} is blacklisted`));
+      clearInterval(sendInterval);
+      return;
+    }
+
   }, 1000);
 }
