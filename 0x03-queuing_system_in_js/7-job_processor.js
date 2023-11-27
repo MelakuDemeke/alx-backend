@@ -17,5 +17,11 @@ const sendNotification = (phoneNumber, message, job, done) => {
       return;
     }
 
+    if (totalNotifications === pendingNotifications) {
+      console.log(
+        `Sending notification to ${phoneNumber}`,
+        `with message: ${message}`,
+      );
+    }
   }, 1000);
 }
