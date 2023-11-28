@@ -45,6 +45,10 @@ const reserveStockById = async (itemId, stock) => {
   return promisify(client.SET).bind(client)(`item.${itemId}`, stock);
 };
 
+const getCurrentReservedStockById = async (itemId) => {
+  return promisify(client.GET).bind(client)(`item.${itemId}`);
+};
+
 app.get('/list_products/:itemId(\\d+)', (req, res) => {
   const itemId = Number.parseInt(req.params.itemId);
   const productItem = getItemById(Number.parseInt(itemId));
