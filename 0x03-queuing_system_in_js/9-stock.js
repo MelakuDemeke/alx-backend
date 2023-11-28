@@ -41,6 +41,10 @@ const getItemById = (id) => {
   }
 };
 
+const reserveStockById = async (itemId, stock) => {
+  return promisify(client.SET).bind(client)(`item.${itemId}`, stock);
+};
+
 app.get('/list_products', (_, res) => {
   res.json(listProducts);
 });
