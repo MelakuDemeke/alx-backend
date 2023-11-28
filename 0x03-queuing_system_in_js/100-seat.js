@@ -31,7 +31,11 @@ app.get('/available_seats', (_, res) => {
 });
 
 app.get('/reserve_seat', (_req, res) => {
-
+  if (!reservationEnabled) {
+    res.json({ status: 'Reservation are blocked' });
+    return;
+  }
+  
 });
 
 app.listen(PORT, () => {
