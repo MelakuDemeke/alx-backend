@@ -30,6 +30,10 @@ app.get('/available_seats', (_, res) => {
     });
 });
 
+app.get('/reserve_seat', (_req, res) => {
+
+});
+
 app.listen(PORT, () => {
   resetAvailableSeats(process.env.INITIAL_SEATS_COUNT || INITIAL_SEATS_COUNT)
     .then(() => {
