@@ -13,5 +13,8 @@ export const createPushNotificationsJobs = (jobs, queue) => {
     .on('complete', () => {
       console.log('Notification job', job.id, 'completed');
     })
+    .on('failed', (err) => {
+      console.log('Notification job', job.id, 'failed:', err.message || err.toString());
+    })
   }
 }
