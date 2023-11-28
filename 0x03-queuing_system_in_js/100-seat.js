@@ -60,6 +60,23 @@ app.get('/reserve_seat', (_req, res) => {
   }
 });
 
+app.get('/process', (_req, res) => {
+  res.json({ status: 'Queue processing' });
+  queue.process('reserve_seat', (_job, done) => {
+    getCurrentAvailableSeats()
+      .then((result) => Number.parseInt(result || 0))
+      .then((availableSeats) => {
+        reservationEnabled = availableSeats <= 1 ? false : reservationEnabled;
+        if (availableSeats >= 1) {
+          reserveSeat(availableSeats - 1)
+            .then(() => done());
+        } else {
+          done(new Error('Not enough seats available'));
+        }
+      });
+  });
+});
+
 app.listen(PORT, () => {
   resetAvailableSeats(process.env.INITIAL_SEATS_COUNT || INITIAL_SEATS_COUNT)
     .then(() => {
