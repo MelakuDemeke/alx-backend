@@ -16,5 +16,8 @@ describe('createPushNotificationsJobs', () => {
     notificationQ.testMode.exit();
   });
   
-  
+  afterEach(() => {
+    consoleSpy.log.resetHistory();
+  });
+
 });
