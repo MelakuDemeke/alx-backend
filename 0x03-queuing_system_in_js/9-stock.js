@@ -24,3 +24,7 @@ const listProducts = [
     initialAvailableQuantity: 5
   },
 ];
+
+const getItemById = (id) => {
+  
+};
