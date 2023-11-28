@@ -1,10 +1,13 @@
 import { createClient } from 'redis';
 import { createQueue } from 'kue';
+import express from 'express';
 
+const app = express();
+const queue = createQueue();
 const client = createClient({ name: 'reserve_seat' });
 const INITIAL_SEATS_COUNT = 50;
 let reservationEnabled = false;
-const queue = createQueue();
+const PORT = 1245;
 
 const reserveSeat = async (number) => {
   return promisify(client.SET).bind(client)('available_seats', number);
