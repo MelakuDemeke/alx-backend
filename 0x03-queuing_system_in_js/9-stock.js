@@ -1,7 +1,10 @@
 import express from 'express';
+import { promisify } from 'util';
+import { createClient } from 'redis';
 
 const app = express();
 const PORT = 1245;
+const client = createClient();
 
 const listProducts = [
   {
