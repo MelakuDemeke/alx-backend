@@ -84,3 +84,5 @@ app.listen(PORT, () => {
       console.log(`API available on localhost port ${PORT}`);
     });
 });
+
+export default app;
