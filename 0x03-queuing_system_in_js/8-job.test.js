@@ -50,4 +50,14 @@ describe('createPushNotificationsJobs', () => {
     });
   });
 
+  it('Sets up the progress event handler for a job.', (done) => {
+    notificationQ.testMode.jobs[0].addListener('progress', () => {
+      expect(
+        consoleSpy.log
+          .calledWith('Notification job', notificationQ.testMode.jobs[0].id, '50% complete')
+      ).to.be.true;
+      done();
+    });
+    notificationQ.testMode.jobs[0].emit('progress', 50);
+  });
 });
