@@ -22,3 +22,5 @@ export const createPushNotificationsJobs = (jobs, queue) => {
     job.save();
   }
 };
+
+export default createPushNotificationsJobs;
