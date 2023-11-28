@@ -19,5 +19,6 @@ export const createPushNotificationsJobs = (jobs, queue) => {
     .on('progress', (progress, _data) => {
       console.log('Notification job', job.id, `${progress}% complete`);
     });
+    job.save();
   }
-}
+};
