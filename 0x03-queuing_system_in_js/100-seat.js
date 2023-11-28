@@ -17,6 +17,13 @@ const getCurrentAvailableSeats = async () => {
   return promisify(client.GET).bind(client)('available_seats');
 };
 
+app.get('/available_seats', (_, res) => {
+  getCurrentAvailableSeats()
+    .then((numberOfAvailableSeats) => {
+      res.json({ numberOfAvailableSeats })
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`API available on localhost port ${PORT}`);
 });
