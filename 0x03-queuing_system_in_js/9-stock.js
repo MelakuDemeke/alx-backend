@@ -38,6 +38,10 @@ const getItemById = (id) => {
   }
 };
 
+app.get('/list_products', (_, res) => {
+  res.json(listProducts);
+});
+
 app.listen(PORT, () => {
   console.log(`Stock available on localhost port ${PORT}`);
 });
