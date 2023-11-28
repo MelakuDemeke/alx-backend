@@ -10,14 +10,19 @@ describe('createPushNotificationsJobs', () => {
   before(() => {
     notificationQ.testMode.enter(true);
   });
-  
+
   after(() => {
     notificationQ.testMode.clear();
     notificationQ.testMode.exit();
   });
-  
+
   afterEach(() => {
     consoleSpy.log.resetHistory();
+  });
+
+  it('handles empty jobInfos array', () => {
+    createPushNotificationsJobs([], notificationQ);
+    expect(notificationQ.testMode.jobs.length).to.equal(0);
   });
 
   it('Appends tasks to the queue with the appropriate type', (done) => {
@@ -44,4 +49,5 @@ describe('createPushNotificationsJobs', () => {
       done();
     });
   });
+
 });
