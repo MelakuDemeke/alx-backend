@@ -49,6 +49,14 @@ const getCurrentReservedStockById = async (itemId) => {
   return promisify(client.GET).bind(client)(`item.${itemId}`);
 };
 
+const resetProductsStock = () => {
+  return Promise.all(
+    listProducts.map(
+      item => promisify(client.SET).bind(client)(`item.${item.itemId}`, 0),
+    )
+  );
+};
+
 app.get('/list_products/:itemId(\\d+)', (req, res) => {
   const itemId = Number.parseInt(req.params.itemId);
   const productItem = getItemById(Number.parseInt(itemId));
