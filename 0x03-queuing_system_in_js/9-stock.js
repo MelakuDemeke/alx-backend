@@ -69,6 +69,28 @@ app.get('/list_products', (_, res) => {
   res.json(listProducts);
 });
 
+app.get('/reserve_product/:itemId', (req, res) => {
+  const itemId = Number.parseInt(req.params.itemId);
+  const productItem = getItemById(Number.parseInt(itemId));
+
+  if (!productItem) {
+    res.json({ status: 'Product not found' });
+    return;
+  }
+  getCurrentReservedStockById(itemId)
+    .then((result) => Number.parseInt(result || 0))
+    .then((reservedStock) => {
+      if (reservedStock >= productItem.initialAvailableQuantity) {
+        res.json({ status: 'Not enough stock available', itemId });
+        return;
+      }
+      reserveStockById(itemId, reservedStock + 1)
+        .then(() => {
+          res.json({ status: 'Reservation confirmed', itemId });
+        });
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`Stock available on localhost port ${PORT}`);
 });
