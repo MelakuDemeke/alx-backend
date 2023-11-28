@@ -20,4 +20,28 @@ describe('createPushNotificationsJobs', () => {
     consoleSpy.log.resetHistory();
   });
 
+  it('Appends tasks to the queue with the appropriate type', (done) => {
+    expect(notificationQ.testMode.jobs.length).to.equal(0);
+    const jobInfos = [
+      {
+        phoneNumber: '01020304056',
+        message: 'Use the code 1982 to verify your account',
+      },
+      {
+        phoneNumber: '1011121314156',
+        message: 'Use the code 1738 to verify your account',
+      },
+    ];
+    createPushNotificationsJobs(jobInfos, notificationQ);
+    expect(notificationQ.testMode.jobs.length).to.equal(2);
+    expect(notificationQ.testMode.jobs[0].data).to.deep.equal(jobInfos[0]);
+    expect(notificationQ.testMode.jobs[0].type).to.equal('push_notification_code_3');
+    notificationQ.process('push_notification_code_3', () => {
+      expect(
+        consoleSpy.log
+          .calledWith('Notification job created:', notificationQ.testMode.jobs[0].id)
+      ).to.be.true;
+      done();
+    });
+  });
 });
