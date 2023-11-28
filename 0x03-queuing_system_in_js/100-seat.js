@@ -35,7 +35,29 @@ app.get('/reserve_seat', (_req, res) => {
     res.json({ status: 'Reservation are blocked' });
     return;
   }
-  
+  try {
+    const job = queue.create('reserve_seat');
+
+    job.on('failed', (err) => {
+      console.log(
+        'Seat reservation job',
+        job.id,
+        'failed:',
+        err.message || err.toString(),
+      );
+    });
+    job.on('complete', () => {
+      console.log(
+        'Seat reservation job',
+        job.id,
+        'completed'
+      );
+    });
+    job.save();
+    res.json({ status: 'Reservation in process' });
+  } catch {
+    res.json({ status: 'Reservation failed' });
+  }
 });
 
 app.listen(PORT, () => {
