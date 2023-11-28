@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import { expect } from 'chai';
-import { createpushNotificationQ } from 'kue';
+import { createQueue } from 'kue';
 import createPushNotificationsJobs from './8-job.js';
 
 describe('createPushNotificationsJobs', () => {
