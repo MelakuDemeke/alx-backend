@@ -53,7 +53,12 @@ app.get('/list_products/:itemId(\\d+)', (req, res) => {
     res.json({ status: 'Product not found' });
     return;
   }
-
+  getCurrentReservedStockById(itemId)
+    .then((result) => Number.parseInt(result || 0))
+    .then((reservedStock) => {
+      productItem.currentQuantity = productItem.initialAvailableQuantity - reservedStock;
+      res.json(productItem);
+    });
 });
 
 app.get('/list_products', (_, res) => {
