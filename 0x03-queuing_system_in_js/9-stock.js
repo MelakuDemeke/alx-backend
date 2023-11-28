@@ -26,5 +26,9 @@ const listProducts = [
 ];
 
 const getItemById = (id) => {
-  
+  const item = listProducts.find(obj => obj.itemId === id);
+
+  if (item) {
+    return Object.fromEntries(Object.entries(item));
+  }
 };
