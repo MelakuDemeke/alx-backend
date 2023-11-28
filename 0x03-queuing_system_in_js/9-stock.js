@@ -100,7 +100,10 @@ app.get('/reserve_product/:itemId', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Stock available on localhost port ${PORT}`);
+  resetProductsStock()
+    .then(() => {
+      console.log(`API available on localhost port ${PORT}`);
+    });
 });
 
 export default app;
