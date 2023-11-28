@@ -37,3 +37,9 @@ const getItemById = (id) => {
     return Object.fromEntries(Object.entries(item));
   }
 };
+
+app.listen(PORT, () => {
+  console.log(`Stock available on localhost port ${PORT}`);
+});
+
+export default app;
